@@ -161,7 +161,7 @@ h2::after {
 /* ---------- Kartu keahlian: CSS Grid ---------- */
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  grid-template-columns: 1fr; /* mobile-first: 1 kolom */
   gap: 22px;
 }
 .card {
@@ -242,12 +242,34 @@ footer {
   font-size: .92rem;
 }
 
-@media (max-width: 560px) {
-  header { padding-top: 52px; }
-  nav a { padding: 8px 14px; font-size: .92rem; }
+/* ===== MEDIA QUERIES (LKP 2B) ===== */
+
+/* Tablet: 2 kolom untuk cards */
+@media (min-width: 768px) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Desktop: 4 kolom untuk cards */
+@media (min-width: 1024px) {
+  .cards { grid-template-columns: repeat(4, 1fr); }
+  main { padding: 0 40px; }
+  header { padding: 60px 20px; }
+}
+
+/* Mobile kecil: sesuaikan padding & ukuran */
+@media (max-width: 480px) {
+  header { padding: 24px 16px 40px; }
+  header h1 { font-size: 1.5rem; }
+  .status { font-size: .95rem; margin-bottom: 22px; }
+  nav { gap: 4px; font-size: .9rem; }
+  nav a { padding: 8px 14px; }
+  .foto-wrap { width: 96px; height: 96px; margin-bottom: 16px; border-width: 4px; }
+  .inisial { font-size: 2rem; }
+  main { margin-top: 36px; }
+  section { margin-bottom: 44px; }
   h2 { font-size: 1.4rem; }
   #tentang p { padding: 22px; }
-  .contact-list li { width: 100%; }
+  .contact-list li { width: 100%; flex-wrap: wrap; gap: 8px 12px; padding: 14px 18px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
